@@ -1,16 +1,24 @@
-var connection = require('./connection.js');
+var connection = require("./connection.js");
 
+function orm() {}
 
-function selectAll(){
+orm.prototype.selectAll = function(cb) {
+  connection.query("SELECT * FROM hotdogs;", function(err, data) {
+    if (err) {
+      return err;
+    }
+    // console.log("data from database:");
+    // console.log(data);
+    return cb(data);
+  });
+};
 
-}
+// orm.prototype.function insertOne(){
 
-function insertOne(){
+// }
 
-}
+// orm.prototype.function updateOne(){
 
-function updateOne(){
+// }
 
-}
-
-//These functions need to be in an orm object
+module.exports = orm;

@@ -5,7 +5,7 @@ var router = require('./controllers/hotdog_controllers.js');
 var path = require('path');
 
 var app = express();
-var port = 3001;
+var port =  process.env.PORT || 3001;
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));

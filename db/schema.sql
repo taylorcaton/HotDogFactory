@@ -10,17 +10,17 @@ To run this file, we do the following in our Terminal:
 
 */
 
--- Create the database hotdogs_db and specified it for use.
-DROP DATABASE IF EXISTS hotdogs_db;
-CREATE DATABASE hotdogs_db;
-USE hotdogs_db;
+-- Create the database oz5fym2grvwnztka and specified it for use.
+DROP DATABASE IF EXISTS oz5fym2grvwnztka;
+CREATE DATABASE oz5fym2grvwnztka;
+USE oz5fym2grvwnztka;
 
 -- Create the table hotdogs.
 CREATE TABLE hotdogs
 (
     id int NOT NULL AUTO_INCREMENT,
     hotdog_name varchar(255) NOT NULL,
-    devoured BIT DEFAULT 0,
+    devoured BOOLEAN DEFAULT false,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );

@@ -6,9 +6,9 @@
                 <h4 class="card-title">Available Dogs</h4>
                 <p class="card-text">Click to "Eat!"</p>
             </div>
-            {{#each hotdog}}
+            {{#each available}}
             <p>
-                <button type="button" name="btn-hotdog" id="btn-hotdog" class="btn btn-primary btn-lg btn-block" value={{this.id}}>{{this.hotdog_name}}</button>
+                <button name="btn-hotdog" class="btn btn-primary btn-lg btn-block btn-hotdog" value="{{id}}">{{this.hotdog_name}}</button>
             </p>
             {{/each}}
         </div>
@@ -20,7 +20,7 @@
                 <h4 class="card-title">Devoured Dogs</h4>
             </div>
             <ul class="text-muted">
-                {{#each hotdog}}
+                {{#each devoured}}
                 <li>
                     {{this.hotdog_name}}
                 </li>
@@ -36,7 +36,7 @@
         <h4 class="card-title">Create Your Own!</h4>
         <div class="form-group">
             <input type="text" class="form-control" name="hotdog_name" id="hotdog_name" aria-describedby="helpId" placeholder="Enter the name of your custom dog, dawg">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="btn-custom-hotdog">Submit</button>
         </div>
     </div>
 </div>

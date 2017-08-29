@@ -2,15 +2,43 @@
 var express = require("express");
 var hotdog = require("../models/hotdog.js");
 
-module.exports = (function() {
-  var router = express.Router();
+var router = express.Router();
 
-  router.get("/", function(req, res) {
-    console.log("accessing data");
-    hotdog("selectAllData", function(data){
-      res.render("index", { hotdog: data });
+router.use(function timeLog (req, res, next) {
+    console.log('Time: ', Date.now())
+    next();
+  })
+
+router.get("/", function(req, res) {
+  console.log("accessing data via GET");
+  hotdog("selectAllData", null, function(data) {
+    var devoured = [];
+    var available = [];
+
+    data.forEach(function(element) {
+      if (element.devoured) {
+        devoured.push(element);
+      } else {
+        available.push(element);
+      }
+    });
+
+    res.render("index", { available: available, devoured: devoured });
+  });
+});
+
+router.put("/", function(req, res) {
+  console.log(`accessing data via PUT with ${req.body.data}`);
+  hotdog("updateData", req.body.id, function(stuff) {
+    res.send("Update finished");
+  });
+});
+
+router.post("/", function(req, res) {
+    console.log(`accessing data via POST with ${req.body.name}`);
+    hotdog("addData", req.body.name, function(stuff) {
+      res.send("Add finished");
     });
   });
 
-  return router;
-})();
+module.exports = router;
